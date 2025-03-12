@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
 
-#include "./utils/defines.h"
+#include "../util/defines.h"
 
 #include "read_input.h"
 
@@ -15,7 +16,7 @@ char *read_input(void) {
         if (feof(stdin)) {
             exit(EXIT_SUCCESS);
         } else {
-            perror("readinput");
+            perror("osh: getline\n");
             exit(EXIT_FAILURE);
         }
     }

@@ -4,8 +4,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include "./utils/defines.h"
-#include "./builtin/builtin.h"
+#include "../util/defines.h"
+#include "../builtin/builtin.h"
 
 #include "exec.h"
 

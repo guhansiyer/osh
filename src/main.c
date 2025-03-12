@@ -5,10 +5,11 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include "./exec/exec.h"
-#include "./input/read_input.h"
-#include "./parse/parsing.h"
-#include "./util/defines.h"
+#include "../builtin/builtin.h"
+#include "../exec/exec.h"
+#include "../input/read_input.h"
+#include "../parse/parsing.h"
+#include "../util/defines.h"
 
 void osh_main(void) {
     char *line;
@@ -28,5 +29,7 @@ void osh_main(void) {
 
 int main(int argc, char **argv) {
 
-     
+    osh_main();
+
+    return EXIT_SUCCESS;
 }
