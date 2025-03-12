@@ -11,6 +11,7 @@ char **parse_input(char *line) {
     int idx = 0;
     char **tokens = malloc(sizeof(char) * MAX_TOKEN_BUFFER);
     char *current_token;
+    char **prev_buffer;
 
     if (!tokens) {
         fprintf(stderr, "osh: allocation error\n");
@@ -20,16 +21,18 @@ char **parse_input(char *line) {
     current_token = strtok(line, TOKEN_DELIM); // Initial tokenizing
 
     // Iterate through the current line, adding each token to the array
-    while (token != NULL) {
-        tokens[idx] = token;
+    while (current_token != NULL) {
+        tokens[idx] = current_token;
         idx++;
 
         // Reallocate the token buffer if necessary
-        if (idx >= MAX_TOKEN_BUFFER) {
+        if (idx >= buffer_size) {
             buffer_size += MAX_TOKEN_BUFFER;
+            prev_buffer = tokens;
             tokens = realloc(tokens, (sizeof(char) * MAX_TOKEN_BUFFER));
 
             if (!tokens) {
+                free(prev_buffer); 
                 fprintf(stderr, "osh: allocation error\n");
                 exit(EXIT_FAILURE);
             }
