@@ -9,12 +9,14 @@
 
 char *builtin_list[] = {
     "cd",
+    "echo",
     "help",
     "exit"
 };
 
 int (*builtin_func[]) (char **) = {
     &cd,
+    &echo,
     &help,
     &osh_exit
 };
@@ -34,6 +36,33 @@ int cd(char **args) {
     return 1;
 }
 
+int echo(char **args) {
+    int newline = 1;
+    int idx = 1;
+
+    if (args[1] && strcmp(args[1], "-n") == 0) {
+        newline = 0;
+        idx++;
+    }
+
+    for (; args[idx] != NULL; ++idx) {
+        printf("%s", args[idx]);
+        if (args[idx + 1] != NULL) {
+            printf(" ");
+        }
+    }
+
+    if (newline) {
+        printf("\n");
+    }
+
+    return 1;
+}
+
+int osh_exit(char **args) {
+    return 0;
+}
+
 int help(char **args) {
     printf("osh: The Open Shell\n");
     printf("The following commands are currently supported:\n");
@@ -43,8 +72,4 @@ int help(char **args) {
     }
 
     return 1;
-}
-
-int osh_exit(char **args) {
-    return 0;
 }
