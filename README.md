@@ -13,12 +13,6 @@ All implemented shell commands are represented as built-ins, which so far includ
 
 All other classic shell commands (not builtins) such as `ls` work through their native *nix implementations currently.  
 
-Currently, I'm working on adding:
-* Piping
-* Redirection
-* Persistent command history
-* Parallel execution
-
 ## Building osh
 
 In the top level directory, run ```make``` to create a ```osh``` executable and ```/build/``` directory with individual object files. To clear the executable and objects, run ```make clean```.
