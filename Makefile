@@ -7,6 +7,7 @@ SRC_DIR = src
 BUILD_DIR = build
 BUILTIN_DIR = $(SRC_DIR)/builtin
 EXEC_DIR = $(SRC_DIR)/exec
+HISTORY_DIR = $(SRC_DIR)/history
 INPUT_DIR = $(SRC_DIR)/input
 PARSE_DIR = $(SRC_DIR)/parse
 UTIL_DIR = $(SRC_DIR)/util
@@ -15,6 +16,7 @@ UTIL_DIR = $(SRC_DIR)/util
 SRCS = $(SRC_DIR)/main.c \
        $(BUILTIN_DIR)/builtin.c \
        $(EXEC_DIR)/exec.c \
+       $(HISTORY_DIR)/history.c \
        $(INPUT_DIR)/read_input.c \
        $(PARSE_DIR)/parsing.c
 
@@ -22,7 +24,10 @@ SRCS = $(SRC_DIR)/main.c \
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
 # Include directories
-INCLUDES = -I$(BUILTIN_DIR) -I$(EXEC_DIR) -I$(INPUT_DIR) -I$(PARSE_DIR) -I$(UTIL_DIR)
+INCLUDES = -I$(BUILTIN_DIR) -I$(EXEC_DIR) -I$(HISTORY_DIR) -I$(INPUT_DIR) -I$(PARSE_DIR) -I$(UTIL_DIR)
+
+# Linker flags
+LDLIBS = -lreadline
 
 # Output executable
 TARGET = osh
@@ -34,7 +39,7 @@ $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LDLIBS)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)

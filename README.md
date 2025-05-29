@@ -11,7 +11,11 @@ All implemented shell commands are represented as built-ins, which so far includ
 * `help`
 * `sinfo`: reports system information (memory usage, uptime, kernel & CPU info)
 
-All other classic shell commands (not builtins) such as `ls` work through their native *nix implementations currently.  
+All other classic shell commands (not builtins) such as `ls` work through their native *nix implementations currently.
+
+Other noteworthy features include:
+* Single pipes
+* Persistent command history with `GNU readline`
 
 ## Building osh
 
