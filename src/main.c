@@ -20,8 +20,6 @@ void osh_main(void) {
     char **args;
     int status;
 
-    read_history(NULL);
-
     do {
         printf("osh $ ");
         line = read_input();
@@ -31,8 +29,6 @@ void osh_main(void) {
         free(line);
         free(args);
     } while(status);
-
-    write_history(NULL);
 }
 
 int main(int argc, char **argv) {
